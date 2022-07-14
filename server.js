@@ -24,9 +24,9 @@ io.on("connection", (socket) => {
   readyPlayerCount++;
   if (readyPlayerCount === 2) {
     // broadcast('startGame)
+    io.emit("startGame", socket.id);
   }
 });
-  console.log("🚀 ~ file: server.js ~ line 29 ~ io.on ~ readyPlayerCount", readyPlayerCount)
 
 server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
