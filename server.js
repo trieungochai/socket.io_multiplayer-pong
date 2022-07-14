@@ -26,6 +26,10 @@ io.on("connection", (socket) => {
     // broadcast('startGame)
     io.emit("startGame", socket.id);
   }
+
+  socket.on("paddleMove", (paddleData) => {
+    socket.broadcast.emit("paddleMove", paddleData);
+  });
 });
 
 server.listen(PORT, () => {
