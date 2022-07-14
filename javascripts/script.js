@@ -40,13 +40,13 @@ function createCanvas() {
 // Wait for Opponents
 function renderIntro() {
   // Canvas Background
-  context.fillStyle = 'black';
+  context.fillStyle = "black";
   context.fillRect(0, 0, width, height);
 
   // Intro Text
-  context.fillStyle = 'white';
+  context.fillStyle = "white";
   context.font = "32px Courier New";
-  context.fillText("Waiting for opponent...", 20, (canvas.height / 2) - 30);
+  context.fillText("Waiting for opponent...", 20, canvas.height / 2 - 30);
 }
 
 // Render Everything on Canvas
@@ -164,6 +164,7 @@ function animate() {
 function startGame() {
   createCanvas();
   renderIntro();
+  socket.emit("ready");
 
   paddleIndex = 0;
   window.requestAnimationFrame(animate);
@@ -183,3 +184,7 @@ function startGame() {
 
 // On Load
 startGame();
+
+socket.on("connect", () => {
+  console.log("Connect as...", socket.id);
+});
